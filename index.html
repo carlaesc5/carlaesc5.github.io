@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Drama list</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/television.png" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light" style="margin-left: 20px; ">
+        <a class="navbar-brand mb-0 h1" href="#">MDL</a>
+    </nav>
+    <main>
+        <div id="app" class="container">
+            <h1>Dramas</h1>
+            <br>
+            <a class="btn btn-success" href="drama_nuevo.html">Ingrese nuevo drama</a>
+            <br><br>
+
+            <div v-if="error">
+                <p>Lo sentimos, ocurrió un error</p>
+            </div>
+            <div v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando...</p>
+                </section>
+                <section v-else>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-success">
+                        <tr>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Episodios</th>
+                            <th scope="col">Genero</th>
+                            <th scope="col">Año</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col">Estrellas</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="" v-for="drama in dramas">
+                            <td>{{drama.titulo}}</td>
+                            <td>{{drama.episodios}}</td>
+                            <td>{{drama.genero}}</td>
+                            <td>{{drama.anio}}</td>
+                            <td style="width: 100px;">{{drama.autor}}</td>
+                            <td>{{drama.estrellas}}</td>
+                            <td>{{drama.descripcion}}</td>
+                            <td style="width: 200px;">
+                                <img :src="drama.imagen" :alt="drama.nombre" style="width: 200px">
+                            </td>
+                            <td style="width: 230px;">
+                                <a class="btn btn-outline-success" :href="'drama_update.html?id='+ drama.id">Editar</a>
+                                <button type="button" class="btn btn-outline-warning" v-on:click="eliminar(drama.id)"
+                                    style="margin-left: 20px;">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </section>
+        </div>
+        </div>
+    </main>
+    <footer class="bg-dark text-center text-white">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            Proyecto Codo a Codo:
+            <a class="text-white" style="text-decoration: none;">ㅤAndrea Storniolo | Carla Escalante</a>
+        </div>
+    </footer>
+    <!-- Link de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
+    <script src="./js/dramas.js"></script>
+    <script>
+        const menu = document.querySelector(".menu")
+        const navLinks = document.querySelector(".nav-links")
+        menu.addEventListener('click', () => (navLinks.classList.toggle('mobile-menu')))
+    </script>
+</body>
+
+</html>
